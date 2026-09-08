@@ -12,12 +12,21 @@ MCP tool call, not a shell command.
 
 ## Workspace coordinates
 
-<!-- Fill these in on first use, then this file stops being guesswork. -->
+- **Workspace:** `Open Roles`. The workspace *is* the product — there is no
+  Linear project representing the app as a whole.
+- **Team:** `URO` (display name "Uros Rakovic"). The only team.
+- **Projects: one per milestone**, named after the roadmap entry —
+  e.g. `M2 · Real data: the read path`. A Linear project is a scoped body of work
+  with a start and an end, which is exactly what a milestone is; the whole app is
+  the workspace. Create the project when you start the milestone.
+- **Labels:** only `ready-for-human` exists so far (created 2026-09-08). The
+  other four in [`triage-labels.md`](triage-labels.md) are not needed until
+  `/triage` has incoming issues to sort.
 
-- **Team:** _TBD — discover via the MCP server's "list teams" tool and record the key here (e.g. `ENG`)._
-- **Project:** `OpenRoles` — the Linear project all specs and tickets belong to.
-  Its description is the product brief; keep it in sync with
-  [`docs/01-product-brief.md`](../01-product-brief.md), which is the source of truth.
+> This section was guesswork until M2. It now records what is actually there.
+> Earlier revisions of this file assumed a single `OpenRoles` project holding
+> every milestone — that was wrong about Linear's hierarchy
+> (workspace → teams → projects → issues) and has been corrected.
 
 ## Conventions
 
@@ -49,10 +58,17 @@ blocker, and is unassigned.
 
 Create a Linear issue in the `OpenRoles` project.
 
-**Specs** (`/to-spec`) are issues too — one per milestone, titled
-`Spec: M<n> — <milestone name>`, with the milestone's tickets created as
-**sub-issues** of it. Do not close a spec issue when its tickets are done; the
-human closes it after the milestone self-review.
+**Specs** (`/to-spec`) are published as **two objects in the milestone's
+project**, because a Linear document cannot parent issues:
+
+1. A **document** titled `Spec: M<n> — <milestone name>` holding the full spec.
+   This is the canonical copy — edit it, not the issue.
+2. A thin **issue** with the same title, linking to the document and carrying the
+   ticket list. `/to-tickets` creates the milestone's tickets as **sub-issues**
+   of this one.
+
+Do not close the spec issue when its tickets are done; the human closes it after
+the milestone self-review against [`../03-architecture.md`](../03-architecture.md).
 
 ## When a skill says "fetch the relevant ticket"
 
