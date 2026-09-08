@@ -40,8 +40,16 @@ point instead of scattered queries.
 [`src/actions/`](../src/actions) hold `'use server'` functions. Each is a public
 POST endpoint, so each one: **verifies → authorizes → validates (zod) → writes →
 revalidates**. For read-your-own-writes (an employer publishing a role) use
-`updateTag` so the change shows immediately; use `revalidateTag` for background
-freshness.
+`updateTag(tag)` — it expires the entry immediately, so the next read waits for
+fresh data instead of being served stale, and the employer sees their change at
+once. `updateTag` is Server-Action-only.
+
+> **Next 16:** the bare `revalidateTag(tag)` call is deprecated. It now takes a
+> cache profile as a second argument — `revalidateTag(tag, "max")` for
+> stale-while-revalidate, `revalidateTag(tag, { expire: 0 })` to force a
+> blocking revalidate — and it is the *background-freshness* tool, legal in both
+> Server Actions and Route Handlers. Reach for `updateTag` when the user must
+> see their own write.
 
 ## 5. Auth: optimistic in the proxy, real in the DAL (Lesson 05)
 

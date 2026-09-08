@@ -20,7 +20,9 @@ see. Check items off as you go; log surprises in [`learning-log.md`](learning-lo
 - **Win:** a fast, server-rendered public skin.
 
 ## M2 · Real data: the read path (Lessons 02, 04, 08)
-- [ ] Finish the schema (`accounts`/`sessions` for Auth.js, relations); seed data.
+- [ ] Finish the schema (`accounts` for Auth.js — **not** `sessions`: the
+      Credentials provider only supports the JWT session strategy, so that table
+      would never be written; plus `relations()`); seed data.
 - [ ] Implement `data/jobs.ts` reads + DTO mappers; wire the board + role detail.
 - [ ] Add `use cache` + tags to the role page; `generateStaticParams` + metadata.
 - **Win:** the public board shows seeded roles from Postgres, cached.
