@@ -15,6 +15,13 @@ export default defineConfig({
   test: {
     environment: "node",
     globals: true,
+    // Only colocated unit tests under src/. Without this, Vitest's default glob
+    // also picks up e2e/*.spec.ts — those are Playwright specs, and collecting
+    // them here fails ("Playwright Test needs to be invoked via 'npx playwright
+    // test'"). Playwright owns e2e/ via playwright.config.ts; Vitest owns src/.
+    // `.ts` only, deliberately: this project does no UI component testing
+    // (docs/05-conventions.md).
+    include: ["src/**/*.test.ts"],
   },
   resolve: {
     alias: { "@": resolve(__dirname, "./src") },
