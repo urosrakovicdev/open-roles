@@ -1,0 +1,29 @@
+# Dependencies
+/node_modules
+
+# Next.js build output
+/.next
+/out
+
+# Production
+/build
+
+# Environment (NEVER commit real secrets — Lesson 04/06)
+.env
+.env.local
+.env*.local
+
+# Drizzle
+# (commit /migrations — they are source of truth. Ignore studio meta if any.)
+
+# Testing
+/coverage
+/playwright-report
+/test-results
+
+# Misc
+.DS_Store
+*.pem
+npm-debug.log*
+.vercel
+next-env.d.ts
